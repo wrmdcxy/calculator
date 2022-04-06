@@ -1,0 +1,43 @@
+<div class="mdui-appbar">
+    <div class="mdui-toolbar mdui-color-blue" style="z-index:10000;position:fixed;top:0;left:0;right:0">
+        <button mdui-drawer="{target:'#calculate-type'}" class="btn-ctrl-drawer mdui-btn mdui-btn-icon mdui-ripple-black mdui-ripple">
+            <i class="mdui-icon material-icons">&#xe5d2;</i>
+        </button>
+    </div>
+    <div id="calculate-type" class="mdui-drawer mdui-color-white mdui-drawer-close" style="
+        position:fixed;z-index: 5000;">
+        <br><br><br><br>
+        <div class="mdui-list mdui-collapse">
+            <div class="mdui-collapse-item">
+                <div class="calc-type-g1-header mdui-collapse-item-header mdui-list-item mdui-ripple">
+                    <i class="mdui-icon material-icons mdui-text-color-orange">&#xe1bd;</i>
+                    <div class="mdui-list-item-content"> &nbsp; &nbsp; Basic</div>
+                    <i class="mdui-collapse-item-arrow mdui-icon material-icons">keyboard_arrow_down</i>
+                </div>
+                <div class="mdui-collapse-item-body mdui-list">
+                    <a href="./simple.html" class="mdui-ripple mdui-list-item" style="width:100%">Simple</a>
+                    <a href="./scientific.html" class="mdui-ripple mdui-list-item" style="width:100%">Scientific</a>
+                </div>
+            </div>
+            <div class="mdui-collapse-item">
+                <div class="calc-type-g2-header mdui-collapse-item-header mdui-list-item mdui-ripple">
+                    <i class="mdui-icon material-icons mdui-text-color-blue">&#xe87b;</i>
+                    <div class="mdui-list-item-content"> &nbsp; &nbsp; Senior</div>
+                    <i class="mdui-collapse-item-arrow mdui-icon material-icons">keyboard_arrow_down</i>
+                </div>
+                <div class="mdui-collapse-item-body mdui-list">
+                    <a href="./algebra.html" class="mdui-ripple mdui-list-item" style="width:100%">Algebra</a>
+                    <a href="./geometry.html" class="mdui-ripple mdui-list-item" style="width:100%">Geometry</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    var calc_type_co=new mdui.Collapse(".mdui-collapse")
+    var calc_type_drawer=new mdui.Drawer("#calculate-type")
+    $("body").attr("style",$("body").attr("style")+';padding-right:50px;padding-left:50px;padding-top:85px')
+    $("#calculate-type").on("open.mdui.drawer",function(){$("body").attr("style",$("body").attr("style")+';padding-left:300px;padding-top:85px')})
+    $("#calculate-type").on("close.mdui.drawer",function(){$("body").attr("style",$("body").attr("style")+';padding-left:50px;padding-top:85px')})
+    mdui.mutation()
+</script>
