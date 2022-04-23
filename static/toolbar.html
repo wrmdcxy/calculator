@@ -7,7 +7,7 @@
     <div id="calculate-type" class="mdui-drawer mdui-color-white mdui-drawer-close" style="
         position:fixed;z-index: 5000;">
         <br><br><br><br>
-        <div class="mdui-list mdui-collapse">
+        <div class="mdui-list mdui-collapse" mdui-collapse>
             <div class="mdui-collapse-item">
                 <div class="calc-type-g1-header mdui-collapse-item-header mdui-list-item mdui-ripple">
                     <i class="mdui-icon material-icons mdui-text-color-orange">&#xe1bd;</i>
@@ -33,7 +33,9 @@
     </div>
 </div>
 <script>
-    document.body.style.paddingTop="85px"
-    document.body.style.paddingRight="85px"
-    mdui.mutation()
+    $(document).ready(function(){
+        document.body.style.paddingTop = "85px"
+        document.body.style.paddingRight = "85px"
+        mdui.mutation()
+    })
 </script>
