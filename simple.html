@@ -11,14 +11,96 @@
             $("#toolbar").load("./static/toolbar.html")
         })
     </script>
+    <style>
+        #calc-num-buttons{
+            display: grid;
+            grid-template-columns: repeat(5,auto);
+            grid-template-rows: repeat(4,auto);
+        }
+        #calc-num-buttons>button{
+            font-size: xx-large;
+            height: 100px;
+            width: auto;
+        }
+        #board{
+            height: 100px;
+            font-size: large;
+        }
+    </style>
 </head>
 <body>
 <div id="toolbar">
 </div>
-
-<!--the support us insert -->
-<div class="supp"></div>
-<script>$(".supp").load("./static/support_us.html")</script>
-
+<div id="board"></div>
+<div id="btn-board">
+<div id="calc-num-buttons" class="mdui-color-light-blue-50">
+    <button class="mdui-btn mdui-ripple num-btn num-1">1</button>
+    <button class="mdui-btn mdui-ripple num-btn num-2">2</button>
+    <button class="mdui-btn mdui-ripple num-btn num-3">3</button>
+    <button class="mdui-ripple mdui-btn option-add">+</button>
+    <button class="mdui-ripple mdui-btn option-backspace material-icons mdui-icon">
+        <i class="mdui-icon material-icons">&#xe14a;</i>
+    </button>
+    <button class="mdui-btn mdui-ripple num-btn num-4">4</button>
+    <button class="mdui-btn mdui-ripple num-btn num-5">5</button>
+    <button class="mdui-btn mdui-ripple num-btn num-6">6</button>
+    <button class="mdui-ripple mdui-btn option-sub">-</button>
+    <button class="mdui-ripple mdui-btn bracket-open-btn">(</button>
+    <button class="mdui-btn mdui-ripple num-btn num-7">7</button>
+    <button class="mdui-btn mdui-ripple num-btn num-8">8</button>
+    <button class="mdui-btn mdui-ripple num-btn num-9">9</button>
+    <button class="mdui-ripple mdui-btn option-mul">×</button>
+    <button class="mdui-ripple mdui-btn bracket-close-btn">)</button>
+    <button class="mdui-btn mdui-ripple point-btn">.</button>
+    <button class="mdui-btn mdui-ripple num-btn num-0">0</button>
+    <button class="mdui-btn mdui-ripple num-btn num-00">00</button>
+    <button class="mdui-ripple mdui-btn option-divide">÷</button>
+    <button class="mdui-btn mdui-ripple calculate">=</button>
+</div>
+</div>
 </body>
+<script>
+    expression=''
+    clear_exp_lock=false
+    function add_char(char){
+        if (char==="+"||char==="-"||char==="×"||char==="÷"){clear_exp_lock=false}
+        if(clear_exp_lock){expression=""}
+        expression+=char.replace("×","*").replace("÷","/")
+        $("#board").text(expression)
+    }
+    function rm_last_char(){
+        if (clear_exp_lock){expression="";clear_exp_lock=false}
+        else{
+            expression = expression.substring(0, expression.length - 1)
+        }
+        $("#board").text(expression)
+    }
+    $("#calc-num-buttons>button").on("click",function(){
+        if($(this).hasClass("option-backspace")){rm_last_char()}
+        else if($(this).hasClass("calculate")){
+            try {
+                expression=eval(expression)
+                if(expression.toString()==="Infinity"){expression="";$("#board").text("不能除以0")}
+                else $("#board").text(expression)
+            }catch{
+                expression=""
+                $("#board").text("输入有误")
+            }
+            clear_exp_lock=true
+        }
+        else{add_char($(this).text());clear_exp_lock=false}
+    })
+    document.addEventListener("keydown",function (e){
+        if(e.key==="*"){$(".option-mul").click()}
+        else if(e.key==="("){$(".bracket-open-btn").click()}
+        else if(e.key===")"){$(".bracket-close-btn").click()}
+        else if(e.key==="+"){$(".option-add").click()}
+        else if(e.keyCode>=48 && e.keyCode<=57){$(".num-"+(e.keyCode-48).toString()).click()}
+        else if(e.key==="Backspace"){$(".option-backspace").click()}
+        else if(e.key==="Enter"){$(".calculate").click()}
+        else if(e.key==="="){$(".calculate").click()}
+        else if(e.key==="-"){$(".option-sub").click()}
+        else if(e.key==="/"){$(".option-divide").click()}
+    })
+</script>
 </html>
