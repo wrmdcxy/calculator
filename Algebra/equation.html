@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Calculator:Equation</title>
+    <script src="https://cdn.staticfile.org/jquery/3.1.1/jquery.min.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/mdui@1.0.2/dist/css/mdui.min.css" rel="stylesheet"/>
+    <script src="https://cdn.jsdelivr.net/npm/mdui@1.0.2/dist/js/mdui.min.js"></script>
+    <script>
+        $(document).ready(function(){
+            $("#toolbar").load("../static/toolbar.html")
+        })
+    </script>
+    <style>
+        #calc-num-buttons{
+            display: grid;
+            grid-template-columns: repeat(4,auto);
+            grid-template-rows: repeat(4,auto);
+        }
+        #calc-num-buttons>button{
+            width: auto;
+            height: 100px;
+            font-size: xx-large;
+        }
+    </style>
+</head>
+<body><br>
+<div id="toolbar"></div>
+<div id="calculator" style="height: 85%">
+    <div class="calc-board">
+    </div>
+
+    <div class="calc-main-board mdui-container" style="height: 75%">
+        <div class="mdui-tab mdui-tab-centered mdui-color-cyan-100" mdui-tab>
+            <a href="#calc-num-buttons" class="mdui-ripple">数字</a>
+            <a href="#calc-alpha-buttons" class="mdui-ripple">字母</a>
+        </div>
+        <div id="settings" class="mdui-color-light-blue-50"></div>
+        <div id="calc-num-buttons" class="mdui-color-light-blue-50">
+            <button class="mdui-btn mdui-ripple num-btn num-1">1</button>
+            <button class="mdui-btn mdui-ripple num-btn num-2">2</button>
+            <button class="mdui-btn mdui-ripple num-btn num-3">3</button>
+            <button class="mdui-ripple mdui-btn option-add">+</button>
+            <button class="mdui-btn mdui-ripple num-btn num-4">4</button>
+            <button class="mdui-btn mdui-ripple num-btn num-5">5</button>
+            <button class="mdui-btn mdui-ripple num-btn num-6">6</button>
+            <button class="mdui-ripple mdui-btn option-sub">-</button>
+            <button class="mdui-btn mdui-ripple num-btn num-7">7</button>
+            <button class="mdui-btn mdui-ripple num-btn num-8">8</button>
+            <button class="mdui-btn mdui-ripple num-btn num-9">9</button>
+            <button class="mdui-ripple mdui-btn option-mul">*</button>
+            <button class="mdui-btn mdui-ripple point-btn">.</button>
+            <button class="mdui-btn mdui-ripple num-btn num-0">0</button>
+            <button class="mdui-ripple mdui-btn calculate-btn">计算</button>
+            <button class="mdui-ripple mdui-btn option-divide">/</button>
+        </div>
+        <div id="calc-alpha-buttons" class="mdui-color-light-blue-50">
+            <button>+</button>
+        </div>
+    </div>
+</div>
+</div>
+</body>
+</html>
